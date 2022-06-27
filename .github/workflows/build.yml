@@ -19,13 +19,13 @@ jobs:
           - 3306:3306
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup PHP version
-        uses: nanasess/setup-php@v3.0.6
+        uses: nanasess/setup-php@v3.1.1
         with:
           php-version: '7.4'
       - name: Cache composer
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             $HOME/.composer/cache
