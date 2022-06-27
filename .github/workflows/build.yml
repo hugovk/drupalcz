@@ -24,24 +24,6 @@ jobs:
         uses: nanasess/setup-php@v3.0.6
         with:
           php-version: '7.4'
-      - name: SSH keys
-        run: |
-          # Make private key available from github secrets.
-          mkdir -p ~/.ssh
-          rm -fv ~/.ssh/id_rsa
-          touch ~/.ssh/id_rsa
-          echo "${{ secrets.CIDRUPALCZPRIVATE }}" >> ~/.ssh/id_rsa
-          eval "$(ssh-agent -s)"
-          chmod 700 ~/.ssh/
-          chmod 600 ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
-          # Bypass ~/.ssh/known_host and fix "Host key verification failed.".
-          touch ~/.ssh/config
-          chmod 600 ~/.ssh/config
-          echo "Host *" >> ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
-          echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
       - name: Cache composer
         uses: actions/cache@v2
         with:
